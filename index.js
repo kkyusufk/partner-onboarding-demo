@@ -2,8 +2,8 @@
  * Partner Onboarding Class 
  */
  class PartnerOnboarding {
+  #iFrame = null
   constructor({ partnerId }) {
-    this.#iFrame = null;
     this.partnerId = partnerId;
     this.status = {};
     this.url = 'easy.razorpay.com';
@@ -17,7 +17,7 @@
     return new Promise((resolve, reject) => {
       resolve(this.status);
       reject({
-        onboardingStatus: this.status;
+        onboardingStatus: this.status
       })
     });
   }
