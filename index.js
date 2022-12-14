@@ -10,7 +10,7 @@
   }
 
   start = () => {
-    document.append(this.#createIframe());
+    document.body.append(this.#createIframe());
 
     window.onmessage = (e) => console.log(e);
 

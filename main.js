@@ -31,7 +31,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
       value: null
     });
     _defineProperty(this, "start", function () {
-      document.append(_classPrivateMethodGet(_this, _createIframe, _createIframe2).call(_this));
+      document.body.append(_classPrivateMethodGet(_this, _createIframe, _createIframe2).call(_this));
       window.onmessage = function (e) {
         return console.log(e);
       };
