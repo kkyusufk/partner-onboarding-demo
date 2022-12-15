@@ -48,6 +48,8 @@
     button.innerHTML = 'close';
     button.onclick = () => { 
       this.iframe.style.display = "none";
+      window.location.reload();
+      document.body.removeChild(button);
     }
     return button;
   }

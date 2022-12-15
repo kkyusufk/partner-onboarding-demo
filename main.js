@@ -77,6 +77,8 @@ function _createCloseButton2() {
   button.innerHTML = 'close';
   button.onclick = function () {
     _this2.iframe.style.display = "none";
+    window.location.reload();
+    document.body.removeChild(button);
   };
   return button;
 }
