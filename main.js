@@ -44,7 +44,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
     });
     this.partnerId = partnerId;
     this.status = {};
-    this.url = 'easy.razorpay.com';
+    this.url = 'https://localhost:8000/phantom';
   }
   _createClass(PartnerOnboarding, [{
     key: "getiFrame",
