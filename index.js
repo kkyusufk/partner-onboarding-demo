@@ -47,6 +47,7 @@
     const button = document.createElement('button');
     button.innerHTML = 'close';
     button.onclick = () => {
+      console.log(this);
       this.success(this.status);
       this.iframe.style.display = "none";
       window.location.reload();

@@ -54,6 +54,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
         var button = document.createElement('button');
         button.innerHTML = 'close';
         button.onclick = function () {
+          console.log(_this);
           _this.success(_this.status);
           _this.iframe.style.display = "none";
           window.location.reload();
