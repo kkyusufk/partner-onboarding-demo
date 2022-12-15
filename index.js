@@ -46,7 +46,9 @@
   #createCloseButton() {
     const button = document.createElement('button');
     button.innerHTML = 'close';
-    button.onclick = () => this.iframe.style.display = "none";
+    button.onclick = () => { 
+      this.iframe.style.display = "none";
+    }
     return button;
   }
 
