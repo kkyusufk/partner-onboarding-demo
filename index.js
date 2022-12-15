@@ -10,7 +10,7 @@
       mId: ''
     };
     this.url = 'http://localhost:8000/phantom/onboarding/';
-    this.success = successCallback;
+    this.success = (status) => successCallback(status);
   }
 
   start = () => {

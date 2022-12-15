@@ -68,7 +68,9 @@ var PartnerOnboarding = /*#__PURE__*/function () {
       mId: ''
     };
     this.url = 'http://localhost:8000/phantom/onboarding/';
-    this.success = successCallback;
+    this.success = function (status) {
+      return successCallback(status);
+    };
   }
   _createClass(PartnerOnboarding, [{
     key: "getiFrame",
