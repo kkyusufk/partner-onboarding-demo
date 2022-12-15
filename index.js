@@ -3,19 +3,26 @@
  */
  class PartnerOnboarding {
   #iFrame = null
-  constructor({ partnerId }) {
+  constructor({ partnerId, successCallback }) {
     this.partnerId = partnerId;
-    this.status = {};
+    this.data = {
+      status: '',
+      mId: ''
+    };
     this.url = 'http://localhost:8000/phantom/onboarding/';
+    this.success = successCallback;
   }
 
   start = () => {
     document.body.append(this.#createIframe());
+    document.body.append(this.#createCloseButton());
 
-    window.onmessage = (e) => console.log(e);
+    window.onmessage = (e) => {
+      this.data.status = e.data.status;
+    };
 
     return new Promise((resolve, reject) => {
-      resolve(this.status);
+      resolve(this.data);
       reject({
         onboardingStatus: this.status
       })
@@ -32,6 +39,13 @@
     iframe.className = "razorpay-onboarding-iframe";
     this.iframe = iframe;
     return iframe;
+  }
+
+  #createCloseButton() {
+    const button = document.createElement('button');
+    button.innerHTML = 'close';
+    button.onclick = () => this.iframe.style.display = none;
+    return button;
   }
 
   getiFrame() {

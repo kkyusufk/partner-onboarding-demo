@@ -17,14 +17,17 @@ function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollect
 function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
 var _iFrame = /*#__PURE__*/new WeakMap();
 var _createIframe = /*#__PURE__*/new WeakSet();
+var _createCloseButton = /*#__PURE__*/new WeakSet();
 /**
  * Partner Onboarding Class 
  */
 var PartnerOnboarding = /*#__PURE__*/function () {
   function PartnerOnboarding(_ref) {
     var _this = this;
-    var partnerId = _ref.partnerId;
+    var partnerId = _ref.partnerId,
+      successCallback = _ref.successCallback;
     _classCallCheck(this, PartnerOnboarding);
+    _classPrivateMethodInitSpec(this, _createCloseButton);
     _classPrivateMethodInitSpec(this, _createIframe);
     _classPrivateFieldInitSpec(this, _iFrame, {
       writable: true,
@@ -32,19 +35,24 @@ var PartnerOnboarding = /*#__PURE__*/function () {
     });
     _defineProperty(this, "start", function () {
       document.body.append(_classPrivateMethodGet(_this, _createIframe, _createIframe2).call(_this));
+      document.body.append(_classPrivateMethodGet(_this, _createCloseButton, _createCloseButton2).call(_this));
       window.onmessage = function (e) {
-        return console.log(e);
+        _this.data.status = e.data.status;
       };
       return new Promise(function (resolve, reject) {
-        resolve(_this.status);
+        resolve(_this.data);
         reject({
           onboardingStatus: _this.status
         });
       });
     });
     this.partnerId = partnerId;
-    this.status = {};
+    this.data = {
+      status: '',
+      mId: ''
+    };
     this.url = 'http://localhost:8000/phantom/onboarding/';
+    this.success = successCallback;
   }
   _createClass(PartnerOnboarding, [{
     key: "getiFrame",
@@ -60,6 +68,15 @@ function _createIframe2() {
   iframe.className = "razorpay-onboarding-iframe";
   this.iframe = iframe;
   return iframe;
+}
+function _createCloseButton2() {
+  var _this2 = this;
+  var button = document.createElement('button');
+  button.innerHTML = 'close';
+  button.onclick = function () {
+    return _this2.iframe.style.display = none;
+  };
+  return button;
 }
 window.partnerOnboarding = PartnerOnboarding;
 var _default = PartnerOnboarding;
