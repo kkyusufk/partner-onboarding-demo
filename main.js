@@ -76,6 +76,7 @@ function _createCloseButton2() {
   var button = document.createElement('button');
   button.innerHTML = 'close';
   button.onclick = function () {
+    _this2.success(_this2.status);
     _this2.iframe.style.display = "none";
     window.location.reload();
     document.body.removeChild(button);

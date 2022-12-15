@@ -46,7 +46,8 @@
   #createCloseButton() {
     const button = document.createElement('button');
     button.innerHTML = 'close';
-    button.onclick = () => { 
+    button.onclick = () => {
+      this.success(this.status);
       this.iframe.style.display = "none";
       window.location.reload();
       document.body.removeChild(button);
