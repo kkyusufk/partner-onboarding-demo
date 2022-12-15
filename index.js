@@ -43,7 +43,7 @@
     return iframe;
   }
 
-  #createCloseButton() {
+  #createCloseButton = () => {
     const button = document.createElement('button');
     button.innerHTML = 'close';
     button.onclick = () => {

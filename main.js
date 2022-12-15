@@ -14,10 +14,13 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _ty
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
 function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
+function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
+function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
 function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
 var _iFrame = /*#__PURE__*/new WeakMap();
 var _createIframe = /*#__PURE__*/new WeakSet();
-var _createCloseButton = /*#__PURE__*/new WeakSet();
+var _createCloseButton = /*#__PURE__*/new WeakMap();
 /**
  * Partner Onboarding Class 
  */
@@ -27,7 +30,6 @@ var PartnerOnboarding = /*#__PURE__*/function () {
     var partnerId = _ref.partnerId,
       successCallback = _ref.successCallback;
     _classCallCheck(this, PartnerOnboarding);
-    _classPrivateMethodInitSpec(this, _createCloseButton);
     _classPrivateMethodInitSpec(this, _createIframe);
     _classPrivateFieldInitSpec(this, _iFrame, {
       writable: true,
@@ -35,7 +37,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
     });
     _defineProperty(this, "start", function () {
       document.body.append(_classPrivateMethodGet(_this, _createIframe, _createIframe2).call(_this));
-      document.body.append(_classPrivateMethodGet(_this, _createCloseButton, _createCloseButton2).call(_this));
+      document.body.append(_classPrivateFieldGet(_this, _createCloseButton).call(_this));
       window.onmessage = function (e) {
         _this.data.status = e.data.status;
       };
@@ -45,6 +47,20 @@ var PartnerOnboarding = /*#__PURE__*/function () {
           onboardingStatus: _this.status
         });
       });
+    });
+    _classPrivateFieldInitSpec(this, _createCloseButton, {
+      writable: true,
+      value: function value() {
+        var button = document.createElement('button');
+        button.innerHTML = 'close';
+        button.onclick = function () {
+          _this.success(_this.status);
+          _this.iframe.style.display = "none";
+          window.location.reload();
+          document.body.removeChild(button);
+        };
+        return button;
+      }
     });
     this.partnerId = partnerId;
     this.data = {
@@ -70,18 +86,6 @@ function _createIframe2() {
   iframe.height = '700';
   this.iframe = iframe;
   return iframe;
-}
-function _createCloseButton2() {
-  var _this2 = this;
-  var button = document.createElement('button');
-  button.innerHTML = 'close';
-  button.onclick = function () {
-    _this2.success(_this2.status);
-    _this2.iframe.style.display = "none";
-    window.location.reload();
-    document.body.removeChild(button);
-  };
-  return button;
 }
 window.partnerOnboarding = PartnerOnboarding;
 var _default = PartnerOnboarding;
