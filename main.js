@@ -66,6 +66,8 @@ function _createIframe2() {
   var iframe = document.createElement('iframe');
   iframe.src = "".concat(this.url, "?partnerId=").concat(this.partnerId);
   iframe.className = "razorpay-onboarding-iframe";
+  iframe.width = '700';
+  iframe.height = '700';
   this.iframe = iframe;
   return iframe;
 }
@@ -74,7 +76,7 @@ function _createCloseButton2() {
   var button = document.createElement('button');
   button.innerHTML = 'close';
   button.onclick = function () {
-    return _this2.iframe.style.display = none;
+    _this2.iframe.style.display = "none";
   };
   return button;
 }
