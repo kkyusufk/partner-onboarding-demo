@@ -57,7 +57,6 @@ var PartnerOnboarding = /*#__PURE__*/function () {
           console.log(_this);
           _this.success(_this.status);
           _this.iframe.style.display = "none";
-          window.location.reload();
           document.body.removeChild(button);
         };
         return button;

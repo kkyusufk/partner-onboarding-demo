@@ -50,7 +50,6 @@
       console.log(this);
       this.success(this.status);
       this.iframe.style.display = "none";
-      window.location.reload();
       document.body.removeChild(button);
     }
     return button;
