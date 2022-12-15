@@ -6,7 +6,7 @@
   constructor({ partnerId }) {
     this.partnerId = partnerId;
     this.status = {};
-    this.url = 'https://localhost:8000/phantom';
+    this.url = 'http://localhost:8000/phantom/onboarding/';
   }
 
   start = () => {
