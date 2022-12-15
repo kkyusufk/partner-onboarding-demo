@@ -6,7 +6,7 @@
   constructor({ partnerId }) {
     this.partnerId = partnerId;
     this.status = {};
-    this.url = 'easy.razorpay.com';
+    this.url = 'https://localhost:8000/phantom';
   }
 
   start = () => {
