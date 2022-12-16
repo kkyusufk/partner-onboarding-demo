@@ -116,8 +116,8 @@ function _createIframe2() {
   var iframe = document.createElement('iframe');
   iframe.src = "".concat(this.url, "?partnerId=").concat(this.partnerId);
   iframe.className = "razorpay-onboarding-iframe";
-  iframe.width = '700';
-  iframe.height = '700';
+  iframe.width = '90%';
+  iframe.height = '90%';
   this.iframe = iframe;
   return iframe;
 }
