@@ -7,7 +7,8 @@
     this.partnerId = partnerId;
     this.data = {
       status: '',
-      mId: ''
+      mId: '',
+      section: ''
     };
     this.url = 'http://localhost:8000/phantom/onboarding/';
     this.success = (status) => successCallback(status);
@@ -18,8 +19,10 @@
     document.body.append(this.#createCloseButton());
 
     window.onmessage = (e) => {
-      console.log(e)
-      this.data.status = e.data.status;
+      this.data = {
+        ...this.data.status,
+        ...e.data,
+      }
     };
 
     return new Promise((resolve, reject) => {

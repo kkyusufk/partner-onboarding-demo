@@ -41,8 +41,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
       document.body.append(_classPrivateMethodGet(_this, _createIframe, _createIframe2).call(_this));
       document.body.append(_classPrivateFieldGet(_this, _createCloseButton).call(_this));
       window.onmessage = function (e) {
-        console.log(e);
-        _this.data.status = e.data.status;
+        _this.data = _objectSpread(_objectSpread({}, _this.data.status), e.data);
       };
       return new Promise(function (resolve, reject) {
         resolve(_this.data);
@@ -73,7 +72,8 @@ var PartnerOnboarding = /*#__PURE__*/function () {
     this.partnerId = partnerId;
     this.data = {
       status: '',
-      mId: ''
+      mId: '',
+      section: ''
     };
     this.url = 'http://localhost:8000/phantom/onboarding/';
     this.success = function (status) {
