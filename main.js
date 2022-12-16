@@ -17,10 +17,13 @@ function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input ==
 function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
 function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
 function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
+function _classPrivateFieldSet(receiver, privateMap, value) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "set"); _classApplyDescriptorSet(receiver, descriptor, value); return value; }
+function _classApplyDescriptorSet(receiver, descriptor, value) { if (descriptor.set) { descriptor.set.call(receiver, value); } else { if (!descriptor.writable) { throw new TypeError("attempted to set read only private field"); } descriptor.value = value; } }
 function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
 function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
 function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
 var _iFrame = /*#__PURE__*/new WeakMap();
+var _overlay = /*#__PURE__*/new WeakMap();
 var _createIframe = /*#__PURE__*/new WeakSet();
 var _createCloseButton = /*#__PURE__*/new WeakMap();
 var _createOverlay = /*#__PURE__*/new WeakMap();
@@ -35,6 +38,10 @@ var PartnerOnboarding = /*#__PURE__*/function () {
     _classCallCheck(this, PartnerOnboarding);
     _classPrivateMethodInitSpec(this, _createIframe);
     _classPrivateFieldInitSpec(this, _iFrame, {
+      writable: true,
+      value: null
+    });
+    _classPrivateFieldInitSpec(this, _overlay, {
       writable: true,
       value: null
     });
@@ -62,8 +69,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
         button.onclick = function () {
           console.log(_this);
           _this.success(_this.data);
-          _this.iframe.style.display = "none";
-          document.body.removeChild(button);
+          document.body.removeChild(_classPrivateFieldGet(_this, _overlay));
         };
         return button;
       }
@@ -72,6 +78,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
       writable: true,
       value: function value() {
         var overlay = document.createElement('div');
+        _classPrivateFieldSet(_this, _overlay, overlay);
         overlay.className = 'razorpay-onboarding-overlay';
         overlay.style.position = 'fixed';
         overlay.style.top = 0;

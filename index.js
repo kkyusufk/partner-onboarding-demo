@@ -3,6 +3,7 @@
  */
  class PartnerOnboarding {
   #iFrame = null
+  #overlay = null
   constructor({ partnerId, successCallback }) {
     this.partnerId = partnerId;
     this.data = {
@@ -56,14 +57,14 @@
     button.onclick = () => {
       console.log(this);
       this.success(this.data);
-      this.iframe.style.display = "none";
-      document.body.removeChild(button);
+      document.body.removeChild(this.#overlay);
     }
     return button;
   }
 
   #createOverlay = () => {
     const overlay = document.createElement('div');
+    this.#overlay = overlay;
     overlay.className = 'razorpay-onboarding-overlay';
     overlay.style.position = 'fixed';
     overlay.style.top = 0;
