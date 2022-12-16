@@ -16,13 +16,14 @@ function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _ty
 function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
 function _classPrivateFieldInitSpec(obj, privateMap, value) { _checkPrivateRedeclaration(obj, privateMap); privateMap.set(obj, value); }
 function _checkPrivateRedeclaration(obj, privateCollection) { if (privateCollection.has(obj)) { throw new TypeError("Cannot initialize the same private elements twice on an object"); } }
+function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
 function _classPrivateFieldGet(receiver, privateMap) { var descriptor = _classExtractFieldDescriptor(receiver, privateMap, "get"); return _classApplyDescriptorGet(receiver, descriptor); }
 function _classExtractFieldDescriptor(receiver, privateMap, action) { if (!privateMap.has(receiver)) { throw new TypeError("attempted to " + action + " private field on non-instance"); } return privateMap.get(receiver); }
 function _classApplyDescriptorGet(receiver, descriptor) { if (descriptor.get) { return descriptor.get.call(receiver); } return descriptor.value; }
-function _classPrivateMethodGet(receiver, privateSet, fn) { if (!privateSet.has(receiver)) { throw new TypeError("attempted to get private field on non-instance"); } return fn; }
 var _iFrame = /*#__PURE__*/new WeakMap();
 var _createIframe = /*#__PURE__*/new WeakSet();
 var _createCloseButton = /*#__PURE__*/new WeakMap();
+var _createOverlay = /*#__PURE__*/new WeakMap();
 /**
  * Partner Onboarding Class 
  */
@@ -38,8 +39,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
       value: null
     });
     _defineProperty(this, "start", function () {
-      document.body.append(_classPrivateMethodGet(_this, _createIframe, _createIframe2).call(_this));
-      document.body.append(_classPrivateFieldGet(_this, _createCloseButton).call(_this));
+      _this.renderIframeWithOverlay();
       window.onmessage = function (e) {
         _this.data = _objectSpread(_objectSpread({}, _this.data.status), e.data);
       };
@@ -55,11 +55,6 @@ var PartnerOnboarding = /*#__PURE__*/function () {
       value: function value() {
         var button = document.createElement('button');
         button.innerHTML = 'close';
-        button.style = _objectSpread(_objectSpread({}, button.style), {}, {
-          position: 'absolute',
-          top: 0,
-          right: 0
-        });
         button.onclick = function () {
           console.log(_this);
           _this.success(_this.data);
@@ -67,6 +62,18 @@ var PartnerOnboarding = /*#__PURE__*/function () {
           document.body.removeChild(button);
         };
         return button;
+      }
+    });
+    _classPrivateFieldInitSpec(this, _createOverlay, {
+      writable: true,
+      value: function value() {
+        var overlay = document.createElement('div');
+        overlay.className = 'razorpay-onboarding-overlay';
+        overlay.style.position = 'fixed';
+        overlay.style.width = '100vw';
+        overlay.style.height = '100vh';
+        overlay.style.background = 'rgb(0,0,0,0.5)';
+        return overlay;
       }
     });
     this.partnerId = partnerId;
@@ -81,6 +88,14 @@ var PartnerOnboarding = /*#__PURE__*/function () {
     };
   }
   _createClass(PartnerOnboarding, [{
+    key: "renderIframeWithOverlay",
+    value: function renderIframeWithOverlay() {
+      var overlay = _classPrivateFieldGet(this, _createOverlay).call(this);
+      overlay.append(_classPrivateMethodGet(this, _createIframe, _createIframe2).call(this));
+      overlay.append(_classPrivateFieldGet(this, _createCloseButton).call(this));
+      document.body.append(overlay);
+    }
+  }, {
     key: "getiFrame",
     value: function getiFrame() {
       return this.iFrame;

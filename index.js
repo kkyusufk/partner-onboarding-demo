@@ -15,8 +15,7 @@
   }
 
   start = () => {
-    document.body.append(this.#createIframe());
-    document.body.append(this.#createCloseButton());
+    this.renderIframeWithOverlay();
 
     window.onmessage = (e) => {
       this.data = {
@@ -50,12 +49,6 @@
   #createCloseButton = () => {
     const button = document.createElement('button');
     button.innerHTML = 'close';
-    button.style = {
-      ...button.style,
-      position: 'absolute',
-      top: 0,
-      right: 0,
-    }
     button.onclick = () => {
       console.log(this);
       this.success(this.data);
@@ -63,6 +56,24 @@
       document.body.removeChild(button);
     }
     return button;
+  }
+
+  #createOverlay = () => {
+    const overlay = document.createElement('div');
+    overlay.className = 'razorpay-onboarding-overlay';
+    overlay.style.position = 'fixed';
+    overlay.style.width = '100vw';
+    overlay.style.height = '100vh';
+    overlay.style.background = 'rgb(0,0,0,0.5)';
+    return overlay;
+  }
+
+  renderIframeWithOverlay() {
+    const overlay = this.#createOverlay();
+    overlay.append(this.#createIframe());
+    overlay.append(this.#createCloseButton());
+
+    document.body.append(overlay);
   }
 
   getiFrame() {
