@@ -55,6 +55,10 @@ var PartnerOnboarding = /*#__PURE__*/function () {
       value: function value() {
         var button = document.createElement('button');
         button.innerHTML = 'close';
+        button.style.position = 'absolute';
+        button.style.top = 0;
+        button.style.right = 10;
+        button.style.top;
         button.onclick = function () {
           console.log(_this);
           _this.success(_this.data);
@@ -70,9 +74,14 @@ var PartnerOnboarding = /*#__PURE__*/function () {
         var overlay = document.createElement('div');
         overlay.className = 'razorpay-onboarding-overlay';
         overlay.style.position = 'fixed';
+        overlay.style.top = 0;
+        overlay.style.left = 0;
         overlay.style.width = '100vw';
         overlay.style.height = '100vh';
         overlay.style.background = 'rgb(0,0,0,0.5)';
+        overlay.style.display = 'flex';
+        overlay.style.justifyContent = 'center';
+        overlay.style.alignItems = 'center';
         return overlay;
       }
     });
