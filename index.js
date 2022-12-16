@@ -18,6 +18,7 @@
     document.body.append(this.#createCloseButton());
 
     window.onmessage = (e) => {
+      console.log(e)
       this.data.status = e.data.status;
     };
 

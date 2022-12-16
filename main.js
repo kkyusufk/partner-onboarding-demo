@@ -41,6 +41,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
       document.body.append(_classPrivateMethodGet(_this, _createIframe, _createIframe2).call(_this));
       document.body.append(_classPrivateFieldGet(_this, _createCloseButton).call(_this));
       window.onmessage = function (e) {
+        console.log(e);
         _this.data.status = e.data.status;
       };
       return new Promise(function (resolve, reject) {
