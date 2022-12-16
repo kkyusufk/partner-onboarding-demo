@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Razorpay Partner Onboarding Demo"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Razorpay Onboarding</title>
+  </head>
+  <script>var exports = {};</script>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <button onclick="(function() {
+      var lol = new window.partnerOnboarding({ partnerId: 'hello', successCallback: (status) => alert(JSON.stringify({ onboarding: status.status, section: status.section, mid: status.mid })) });
+      lol.start()
+    })()">Get Started</button>
+  </body>
+  <script async src="https://cdn.jsdelivr.net/gh/kkyusufk/partner-onboarding-demo@77583518854c9f093d69dee1227804d39a352718/main.js">
+  </script>
+</html>
