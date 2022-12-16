@@ -46,6 +46,12 @@
   #createCloseButton = () => {
     const button = document.createElement('button');
     button.innerHTML = 'close';
+    button.style = {
+      ...button.style,
+      position: 'absolute',
+      top: 0,
+      right: 0,
+    }
     button.onclick = () => {
       console.log(this);
       this.success(this.data.status);
