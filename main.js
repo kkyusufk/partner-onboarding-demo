@@ -62,7 +62,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
         });
         button.onclick = function () {
           console.log(_this);
-          _this.success(_this.data.status);
+          _this.success(_this.data);
           _this.iframe.style.display = "none";
           document.body.removeChild(button);
         };

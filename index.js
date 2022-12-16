@@ -58,7 +58,7 @@
     }
     button.onclick = () => {
       console.log(this);
-      this.success(this.data.status);
+      this.success(this.data);
       this.iframe.style.display = "none";
       document.body.removeChild(button);
     }
