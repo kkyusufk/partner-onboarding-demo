@@ -22,9 +22,9 @@
       var lol = new window.partnerOnboarding({ partnerId: 'hello', successCallback: (status) => {
         const root = document.querySelector('#root');
         root.innerHTML = `Status: <br>
-        <strong>${status.onboarding}</strong> <br>
-        <strong>${status.section}</strong> <br>
-        <strong>${status.mid}</strong> <br>
+        Onboarding progress: <strong>${status.status}</strong> <br>
+        Section: <strong>${status.section}</strong> <br>
+        Mid: <strong>${status.mid}</strong> <br>
         `
       } });
       lol.start()
