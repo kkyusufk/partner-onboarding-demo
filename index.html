@@ -19,7 +19,14 @@
       Status: 
     </div>
     <button onclick="(function() {
-      var lol = new window.partnerOnboarding({ partnerId: 'hello', successCallback: (status) => updateDOM(status) });
+      var lol = new window.partnerOnboarding({ partnerId: 'hello', successCallback: (status) => {
+        const root = document.querySelector('#root');
+        root.innerHTML = `Status: <br>
+        <strong>${status.onboarding}</strong> <br>
+        <strong>${status.section}</strong> <br>
+        <strong>${status.mid}</strong> <br>
+        `
+      } });
       lol.start()
     })()">Get Started</button>
   </body>
