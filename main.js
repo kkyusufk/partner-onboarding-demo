@@ -48,7 +48,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
       window.onmessage = function (e) {
         _this.data = {
           status: e.data.status,
-          mId: e.data.mId,
+          mid: e.data.mid,
           section: e.data.section
         };
       };
@@ -97,7 +97,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
     this.partnerId = partnerId;
     this.data = {
       status: 'Onboarding Not Started',
-      mId: null,
+      mid: null,
       section: 'Welcome Screen'
     };
     this.url = 'http://localhost:8000/phantom/onboarding/';
