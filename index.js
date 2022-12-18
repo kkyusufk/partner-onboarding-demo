@@ -7,9 +7,9 @@
   constructor({ partnerId, successCallback }) {
     this.partnerId = partnerId;
     this.data = {
-      status: '',
-      mId: '',
-      section: ''
+      status: 'Onboarding Not Started',
+      mId: null,
+      section: 'Welcome Screen'
     };
     this.url = 'http://localhost:8000/phantom/onboarding/';
     this.success = (status) => successCallback(status);
@@ -20,8 +20,9 @@
 
     window.onmessage = (e) => {
       this.data = {
-        ...this.data.status,
-        ...e.data,
+        status: e.data.status,
+        mId: e.data.mId,
+        section: e.data.section
       }
     };
 
@@ -39,7 +40,7 @@
    */
   #createIframe() {
     const iframe = document.createElement('iframe');
-    iframe.src=`${this.url}?partnerId=${this.partnerId}`;
+    iframe.src=`${this.url}`;
     iframe.className = "razorpay-onboarding-iframe";
     iframe.width = '90%';
     iframe.height = '90%';

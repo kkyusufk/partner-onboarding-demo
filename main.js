@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports["default"] = void 0;
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
@@ -48,7 +46,11 @@ var PartnerOnboarding = /*#__PURE__*/function () {
     _defineProperty(this, "start", function () {
       _this.renderIframeWithOverlay();
       window.onmessage = function (e) {
-        _this.data = _objectSpread(_objectSpread({}, _this.data.status), e.data);
+        _this.data = {
+          status: e.data.status,
+          mId: e.data.mId,
+          section: e.data.section
+        };
       };
       return new Promise(function (resolve, reject) {
         resolve(_this.data);
@@ -94,9 +96,9 @@ var PartnerOnboarding = /*#__PURE__*/function () {
     });
     this.partnerId = partnerId;
     this.data = {
-      status: '',
-      mId: '',
-      section: ''
+      status: 'Onboarding Not Started',
+      mId: null,
+      section: 'Welcome Screen'
     };
     this.url = 'http://localhost:8000/phantom/onboarding/';
     this.success = function (status) {
@@ -121,7 +123,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
 }();
 function _createIframe2() {
   var iframe = document.createElement('iframe');
-  iframe.src = "".concat(this.url, "?partnerId=").concat(this.partnerId);
+  iframe.src = "".concat(this.url);
   iframe.className = "razorpay-onboarding-iframe";
   iframe.width = '90%';
   iframe.height = '90%';
