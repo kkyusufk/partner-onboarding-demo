@@ -15,12 +15,22 @@
   <script>var exports = {};</script>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      Status: 
+    </div>
     <button onclick="(function() {
-      var lol = new window.partnerOnboarding({ partnerId: 'hello', successCallback: (status) => alert(JSON.stringify({ onboarding: status.status, section: status.section, mid: status.mid })) });
+      var lol = new window.partnerOnboarding({ partnerId: 'hello', successCallback: (status) => updateDOM(status) });
       lol.start()
     })()">Get Started</button>
   </body>
   <script async src="https://cdn.jsdelivr.net/gh/kkyusufk/partner-onboarding-demo@7559f7ba72a4b72b0bbd71f8068082c47ee251ec/main.js">
+    function updateDOM(status) {
+      const root = document.querySelector('#root');
+      root.innerHTML = `Status: <br>
+      <strong>${status.onboarding}</strong> <br>
+      <strong>${status.section}</strong> <br>
+      <strong>${status.mid}</strong> <br>
+      `
+    }
   </script>
 </html>
