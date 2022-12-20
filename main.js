@@ -100,7 +100,7 @@ var PartnerOnboarding = /*#__PURE__*/function () {
       mid: null,
       section: 'Welcome Screen'
     };
-    this.url = 'https://sme-dashboard.dev.razorpay.in/phantom?partnerId=JFzhDzLxXOgAxM';
+    this.url = 'https://sme-dashboard.dev.razorpay.in/phantom?partnerId=J2651zjBGxRO0S';
     this.success = function (status) {
       return successCallback(status);
     };

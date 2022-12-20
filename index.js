@@ -11,7 +11,7 @@
       mid: null,
       section: 'Welcome Screen'
     };
-    this.url = 'https://sme-dashboard.dev.razorpay.in/phantom?partnerId=JFzhDzLxXOgAxM';
+    this.url = 'https://sme-dashboard.dev.razorpay.in/phantom?partnerId=J2651zjBGxRO0S';
     this.success = (status) => successCallback(status);
   }
 
