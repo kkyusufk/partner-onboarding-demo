@@ -11,7 +11,7 @@
       mid: null,
       section: 'Welcome Screen'
     };
-    this.url = 'https://sme-dashboard.dev.razorpay.in/phantom?partnerId=J2651zjBGxRO0S';
+    this.url = 'https://sme-dashboard.dev.razorpay.in/phantom';
     this.success = (status) => successCallback(status);
   }
 
@@ -40,7 +40,7 @@
    */
   #createIframe() {
     const iframe = document.createElement('iframe');
-    iframe.src=`${this.url}`;
+    iframe.src=`${this.url}?partnerId=${this.partnerId}`;
     iframe.className = "razorpay-onboarding-iframe";
     iframe.width = '90%';
     iframe.height = '90%';
