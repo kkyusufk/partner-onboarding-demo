@@ -67,7 +67,6 @@ var PartnerOnboarding = /*#__PURE__*/function () {
         button.style.position = 'absolute';
         button.style.top = 0;
         button.style.right = 10;
-        button.style.top;
         button.onclick = function () {
           console.log(_this);
           _this.success(_this.data);

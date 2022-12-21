@@ -54,7 +54,6 @@
     button.style.position = 'absolute';
     button.style.top = 0;
     button.style.right = 10;
-    button.style.top
     button.onclick = () => {
       console.log(this);
       this.success(this.data);
