@@ -47,7 +47,7 @@
       font-family: 'Proxima Nova', sans-serif;
     }
 
-    button {
+    .onboarding-button {
       color: white;
       text-transform: uppercase;
       font-weight: 700;
@@ -71,9 +71,14 @@
     <h1>Onboard as a swiggy sub merchant using Razorpay.</h1>
     <div id="root">
     </div>
-    <button onclick="(function() {
+    <button class="onboarding-button" onclick="(function() {
       var lol = new window.partnerOnboarding({ partnerId: 'J2651zjBGxRO0S', successCallback: (status) => {
+
         const root = document.querySelector('#root');
+        const button = document.querySelector('.onboarding-button');
+        if (status.status === 'Onboarding started') {
+          button.innerHTML = 'Resume Onboarding';
+        }
         root.innerHTML = `
         Onboarding status: <strong>${status.status}</strong> <br>
         Section: <strong>${status.section}</strong> <br>
