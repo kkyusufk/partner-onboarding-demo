@@ -11,7 +11,7 @@
       mid: null,
       section: 'Welcome Screen'
     };
-    this.url = 'https://sme-dashboard.dev.razorpay.in/phantom';
+    this.url = 'https://sme-dashboard-phantom-demo.dev.razorpay.in/phantom';
     this.success = (status) => successCallback(status);
   }
 
