@@ -80,11 +80,11 @@
 
         const root = document.querySelector('#root');
         const button = document.querySelector('.onboarding-button');
-        if (status.onboardingStatus === 'Onboarding Started') {
+        if (status.isOnboardingStarted) {
           button.innerHTML = 'Resume Onboarding';
         }
         root.innerHTML = `
-        Onboarding status: <strong>${status.onboardingStatus}</strong> <br>
+        Onboarding status: <strong>${status.isOnboardingStarted ? 'Onboarding Started': 'Onboarding Not Started'}</strong> <br>
         Section: <strong>${status.section}</strong> <br>
         Merchant Id: <strong>${status.merchantId}</strong> <br>
         Phone Number: <strong>${status.phoneNumber}</strong> <br>
