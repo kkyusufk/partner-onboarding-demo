@@ -77,6 +77,7 @@
   <input type="file" />
   <button class="onboarding-button" onclick="(function() {
       var lol = new PartnerOnboarding({ partnerId: 'ISu0ObttJlfXsU', phoneNumber: '9934523345', onClose: (status) => {
+        alert(status)
 
         const root = document.querySelector('#root');
         const button = document.querySelector('.onboarding-button');
@@ -85,11 +86,10 @@
         }
         root.innerHTML = `
         Onboarding status: <strong>${status.isOnboardingStarted ? 'Onboarding Started': 'Onboarding Not Started'}</strong> <br>
-        Section: <strong>${status.section}</strong> <br>
+        Step: <strong>${status.step}</strong> <br>
         Merchant Id: <strong>${status.merchantId}</strong> <br>
-        Phone Number: <strong>${status.phoneNumber}</strong> <br>
-        Basic Details Submitted: <strong>${status.isBasicDetailsSubmitted ? 'Yes' : 'No'}</strong> <br>
-        KYC Submitted: <strong>${status.isKYCSubmitted ? 'Yes' : 'No'}</strong> <br>
+        Account Status: <strong>${status.accountStatus}</strong> <br>
+        Partner Access: <strong>${status.partnerAccess ? 'Yes' : 'No'}</strong> <br>
         `
       } });
       lol.start()
