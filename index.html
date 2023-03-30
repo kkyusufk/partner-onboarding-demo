@@ -86,7 +86,7 @@
         Partner Access: <strong>${status.partnerAccess ? 'Yes' : 'No'}</strong> <br>
         Onboarding Progress: <strong>${status.onboardingProgress}</strong> <br>
         `
-        alert(messageToCommunicate)
+        console.log(status)
         const root = document.querySelector('#root');
         const button = document.querySelector('.onboarding-button');
         if (status.isOnboardingStarted) {
